@@ -69,3 +69,24 @@ database.ref().on("child_added", function(childSnapshot) {
     }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
 });  
+
+
+function calculateNextArrival(firstTrainTime, frequency) {
+    if (moment(firstTrainTime, 'HH:mm').isAfter(moment().format('HH:mm'))) {
+        console.log('Military' + (moment()));
+
+    }
+    else {
+        console.log("Boo");
+
+    }
+    return "frog";
+};
+
+function calculateMinutesAway(nextArrival) {
+    
+};
+var time = moment('23:50','HH:mm');
+var next = calculateNextArrival(time , 25);
+console.log(next);
+console.log( moment(moment()).diff( time, 'minutes' ) );
