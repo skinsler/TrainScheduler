@@ -74,20 +74,31 @@ database.ref().on("child_added", function(childSnapshot) {
 
 //TO DO : Complete calcuated field
 function calculateNextArrival(firstTrainTime, frequency) {
-    if (moment(firstTrainTime, 'HH:mm').isAfter(moment().format('HH:mm'))) {
-        console.log('Military' + (moment()));
-
+    if ( (moment().diff(time, 'minutes') ) < 0 ) {
+        firstTrainTime = firstTrainTime.subtract(1, 'day');
     }
-    else {
-        console.log("Boo");
 
-    }
-    return "frog";
+    var minAway = calculateMinutesAway(firstTrainTime, frequency);
+    console.log("minAway " + minAway);
+
+    var nextArrival = firstTrainTime.add(minAway, 'minutes');
+    console.log( ('Addition result' + nextArrival.format('HH:mm') ) );
+
+    return nextArrival;
+
+    
 };
 
 
 //TO DO : Complete calcuated field
-function calculateMinutesAway(nextArrival) {
+function calculateMinutesAway(firstTrainTime, frequency) {
+    var diff = moment().diff(moment(firstTrainTime), 'minutes');
+    var rem = diff % frequency;
+    
+ 
+    console.log("diff " + diff + "freq" + frequency);
+    console.log(frequency - rem);
+    return (frequency - rem);
     
 };
 
@@ -95,5 +106,5 @@ function calculateMinutesAway(nextArrival) {
 //TO DO: move these calls to 'submit' click handler - calculate fields 
 var time = moment('23:50','HH:mm');
 var next = calculateNextArrival(time , 25);
-console.log(next);
+console.log("function call " + next.format('HH:mm'));
 console.log( moment(moment()).diff( time, 'minutes' ) );
