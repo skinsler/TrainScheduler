@@ -57,6 +57,8 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log(childSnapshot.val().firstTrainTime);
 
 
+    //TODO : Add rows to table
+
     // full list of items to the well
     // $("#full-member-list").append("<div class='well'><span class='member-name'> " +
     //     childSnapshot.val().name +
@@ -70,7 +72,7 @@ database.ref().on("child_added", function(childSnapshot) {
     console.log("Errors handled: " + errorObject.code);
 });  
 
-
+//TO DO : Complete calcuated field
 function calculateNextArrival(firstTrainTime, frequency) {
     if (moment(firstTrainTime, 'HH:mm').isAfter(moment().format('HH:mm'))) {
         console.log('Military' + (moment()));
@@ -83,9 +85,14 @@ function calculateNextArrival(firstTrainTime, frequency) {
     return "frog";
 };
 
+
+//TO DO : Complete calcuated field
 function calculateMinutesAway(nextArrival) {
     
 };
+
+
+//TO DO: move these calls to 'submit' click handler - calculate fields 
 var time = moment('23:50','HH:mm');
 var next = calculateNextArrival(time , 25);
 console.log(next);
